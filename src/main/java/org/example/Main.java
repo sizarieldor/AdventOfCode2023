@@ -9,9 +9,9 @@ public class Main {
 
         try {
             File input = new File("src\\Inputs\\Day1.txt");
-        Day1.solveDay1(input);
+            Day1.solveDay1(input);
 
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
