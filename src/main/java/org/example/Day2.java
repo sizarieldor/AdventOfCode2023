@@ -1,8 +1,7 @@
 package org.example;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Day2 {
     public static void solveDay2(File input) throws IOException {
@@ -14,13 +13,20 @@ public class Day2 {
             line = line.replaceAll(" ", "");
             String[] arrLineSplit = line.split(":");
             String lineData = arrLineSplit[1];
-            String[] arrAllDraws = lineData.split(";");
-            for (int i = 0; i < arrAllDraws.length; i++) {
-                String singleDraw = arrAllDraws[i];
-                if(checkIfDrawValid(singleDraw)){
-                    totalSum += lineNum;
+            String[] arrAllDrawsInLine = lineData.split(";");
+            boolean allDrawsAreValid = true;
+
+            for (int i = 0; i < arrAllDrawsInLine.length; i++) {
+                String singleDraw = arrAllDrawsInLine[i];
+                if (!checkIfDrawValid(singleDraw)) {
+                    allDrawsAreValid = false;
                 }
             }
+
+            if (allDrawsAreValid) {
+                totalSum += lineNum;
+            }
+
             lineNum++;
         }
         System.out.println(totalSum);
@@ -61,7 +67,6 @@ public class Day2 {
         String[] splitToken = new String[2];
         String digitsPart = null;
         String wordsPart = null;
-        char[] tokenChars = token.toCharArray();
         char cFirst = token.charAt(0);
         char cSecond = token.charAt(1);
         boolean cFirstIsDigit = ((int) cFirst >= 48 && (int) cFirst <= 57);
